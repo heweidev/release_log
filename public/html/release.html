@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>版本发布</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body>
+    <form action="../release?">
+        <div>
+            <span>平台：</span>
+            <select name="plat">
+                <option value ="Android">Android</option>
+                <option value ="IOS">IOS</option>
+                <option value="PC">PC</option>
+            </select>
+        </div>
+        <div>
+            <span>版本号：</span>
+            <input type="input" name="version"></input>
+        </div>
+        <div>
+            <span>Subversion：</span>
+            <input type="input" name="subversion"></input>
+        </div>
+        <div>
+            <span>url：</span>
+            <input type="input" name="url"></input>
+        </div>
+        <div>
+            <input type="file" name="file" value="上传"></input>
+        </div>
+        <div>
+            <span>Features：</span>
+            </br>
+            <textarea rows="5" cols="60" placeholder="在此输入新版本特性" name="features"></textarea>
+        </div>
+        <div>
+            <input type="submit" id="commit" value="提交"></input>
+        </div>
+    </form>
+
+    <!-- js -->
+    <script src="javascripts/jquery.min.js"></script>
+    <script src="javascripts/template.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var plat = $('#plat').select()
+            var version = $('#version').val()
+            var subversion = $('#subversion').val()
+            var url = $('#url').val()
+
+        })
+    </script>
+</body>
+
+</html>

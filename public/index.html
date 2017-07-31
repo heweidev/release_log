@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>版本发布日志</title>
+
+    <script type="javascript/template" id='log_item'>
+        <h2>{{version}}</h2>
+        <p>Hash: {{hash}}</p>
+        <p>Subversion: {{subversion}}</p>
+        <p>Date: {{date}}</p>
+        <a href="{{url}}">Download</a>
+        <p>{{features}}</p>
+        <br/>
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li><a href="">Android</a></li>
+        <li><a href="">IOS</a></li>
+        <li><a href="">PC</a></li>
+    </ul>
+    <input type="button" value="新增" id="add_btn"></input>
+    <div id="content"></div>
+
+    <!-- js -->
+    <script src="javascripts/jquery.min.js"></script>
+    <script src="javascripts/template.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            /*
+            var itemList = [
+                {
+                    version: '1.1',
+                    hash: 'jfsijief',
+                    subversion: 'abferfe',
+                    date: new Date().toDateString(),
+                    url: 'http://www.baidu.com',
+                    features: [
+                        'features_1', 'features_2',
+                    ]
+                },
+                {
+                    version: '1.0',
+                    hash: 'jfsijief',
+                    subversion: 'abferfe',
+                    date: new Date().toDateString(),
+                    url: 'http://www.baidu.com',
+                    features: [
+                        'features_1', 'features_2',
+                    ]
+                },
+            ]*/
+
+            $('#add_btn').click(function(){
+                window.location = "/html/release.html";
+            })
+
+            $.get("/log", function (data, status) {
+                //alert("Data: " + data + "\nStatus: " + status);
+                if (status != 'success') {
+                    alert('server response: ' + status)
+                    return
+                }
+
+                var itemList = JSON.parse(data);
+                for (let i = 0; i < itemList.length; i++) {
+                    var itemHtml = template('log_item', itemList[i])
+                    var div = document.createElement('div')
+                    $(div).html(itemHtml)
+                    $('#content').append(div)
+                }
+            });
+        })
+    </script>
+</body>
+
+</html>
