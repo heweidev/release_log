@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <form action="../release?">
+    <form action="../release?" id="data_form">
         <div>
             <span>平台：</span>
             <select name="plat">
@@ -18,15 +18,15 @@
         </div>
         <div>
             <span>版本号：</span>
-            <input type="input" name="version"></input>
+            <input type="text" name="version"></input>
         </div>
         <div>
             <span>Subversion：</span>
-            <input type="input" name="subversion"></input>
+            <input type="text" name="subversion"></input>
         </div>
         <div>
             <span>url：</span>
-            <input type="input" name="url"></input>
+            <input type="text" name="url"></input>
         </div>
         <div>
             <input type="file" name="file" value="上传"></input>
@@ -42,16 +42,21 @@
     </form>
 
     <!-- js -->
-    <script src="javascripts/jquery.min.js"></script>
-    <script src="javascripts/template.js"></script>
+    <script src="../javascripts/jquery.min.js"></script>
+    <script src="../javascripts/template.js"></script>
 
     <script type="text/javascript">
         $(function () {
-            var plat = $('#plat').select()
-            var version = $('#version').val()
-            var subversion = $('#subversion').val()
-            var url = $('#url').val()
-
+            // 数据校验
+            $('#data_form').submit(function(e){
+                $(this).find("input[type='text']").each(function(i, item) {
+                    if ($(this).val().length == 0) {
+                        alert($(this).attr('name') + '不能为空')
+                        e.preventDefault()
+                        return false
+                    }
+                });
+            });
         })
     </script>
 </body>
